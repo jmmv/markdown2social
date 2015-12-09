@@ -1,0 +1,4 @@
+---- markdown ----
+This is a post with a single paragraph.
+---- gplus ----
+This is a post with a single paragraph.

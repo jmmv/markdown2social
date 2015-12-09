@@ -1,0 +1,24 @@
+---- markdown ----
+# First level
+
+## Second level
+
+### Third level
+
+#### Fourth level
+
+##### Fifth level
+
+###### Sixth level
+---- gplus ----
+*First level*
+
+*Second level*
+
+_Third level_
+
+_Fourth level_
+
+_Fifth level_
+
+_Sixth level_

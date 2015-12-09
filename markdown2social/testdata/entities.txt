@@ -1,0 +1,15 @@
+---- markdown ----
+Some text with&mdash;entities in it&mdash;.  We can try uglier things like
+&amp;mdash; or &&&; and see what happens.  We can also add more than one
+entity &amp;&amp;&mdash;&amp; in a row.
+
+This is an &unknown; entity and should be left untouched.
+
+And these are raw &#x2014; &#2014; Unicode code points.
+
+---- gplus ----
+Some text with—entities in it—. We can try uglier things like &mdash; or &&&; and see what happens. We can also add more than one entity &&—& in a row.
+
+This is an &unknown; entity and should be left untouched.
+
+And these are raw — ߞ Unicode code points.

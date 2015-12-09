@@ -1,0 +1,9 @@
+---- markdown ----
+[lone link](http://example.com/lone-link)
+
+This is a [link embedded in the
+text](http://example.com/embedded-link).
+---- gplus ----
+lone link [http://example.com/lone-link]
+
+This is a link embedded in the text [http://example.com/embedded-link].

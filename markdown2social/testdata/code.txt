@@ -1,0 +1,34 @@
+---- markdown ----
+This is a paragraph `with embedded code`.
+
+Some tricky variants: `foo"bar`, `abc""def""`.
+
+    This is a code block with *stuff* inside that `should` not be converted
+    nor flattened into a single line.
+
+    The block continues here.
+
+        The last line is further indented.
+
+However:
+
+    This is another code block.
+---- gplus ----
+This is a paragraph "with embedded code".
+
+Some tricky variants: ""foo"bar"", """abc""def""""".
+
+----
+This is a code block with *stuff* inside that `should` not be converted
+nor flattened into a single line.
+
+The block continues here.
+
+    The last line is further indented.
+----
+
+However:
+
+----
+This is another code block.
+----

@@ -1,0 +1,5 @@
+---- markdown ----
+This is a paragraph with    variable spacing  between words.  This is fine
+in  markdown but  looks ugly in Google+ so it needs to be    collapsed.
+---- gplus ----
+This is a paragraph with variable spacing between words. This is fine in markdown but looks ugly in Google+ so it needs to be collapsed.

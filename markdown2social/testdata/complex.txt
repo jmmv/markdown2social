@@ -1,0 +1,29 @@
+---- markdown ----
+# This is my post
+
+The first paragraph, which is long,
+says this in two lines.
+
+The second paragraph has *emphasized text* and **bold text** in it.
+
+The third paragraph has a **single element** in it.
+
+## First section, which is empty
+
+## Second section
+
+Some text comes here.
+---- gplus ----
+*This is my post*
+
+The first paragraph, which is long, says this in two lines.
+
+The second paragraph has _emphasized text_ and *bold text* in it.
+
+The third paragraph has a *single element* in it.
+
+*First section, which is empty*
+
+*Second section*
+
+Some text comes here.

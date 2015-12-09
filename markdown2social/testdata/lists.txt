@@ -1,0 +1,140 @@
+---- markdown ----
+Bullet list with one item:
+
+* The list.
+
+Numbered list with one item:
+
+1. The list.
+
+Bullet list with multiple items:
+
+* First.
+* Second.
+* Third.
+
+Numbered list with multiple items:
+
+1. First.
+1. Second.
+1. Third.
+
+Bullet list with multiple nesting levels:
+
+* First.
+    * First.
+        * First.
+            * First.
+                * First.
+                    * First.
+                * Back.
+            * Back.
+        * Back.
+    * Back.
+* Second.
+    * Second.
+        * Second.
+            * Second.
+                * Second.
+                    * Second.
+
+Numbered list with multiple nesting items:
+
+1. First.
+    1. First.
+        1. First.
+            1. First.
+                1. First.
+                    1. First.
+                1. Back.
+            1. Back.
+        1. Back.
+    1. Back.
+1. Second.
+    1. Second.
+        1. Second.
+            1. Second.
+                1. Second.
+                    1. Second.
+
+Nested lists of different types:
+
+1. First.
+    * First nested.
+        * Another.
+            1. And more.
+            1. And more and more.
+            1. And more and more and more.
+        * Back.
+1. Back to first level.
+1. Last item.
+---- gplus ----
+Bullet list with one item:
+
+*#* The list.
+
+Numbered list with one item:
+
+*1.* The list.
+
+Bullet list with multiple items:
+
+*#* First.
+*#* Second.
+*#* Third.
+
+Numbered list with multiple items:
+
+*1.* First.
+*2.* Second.
+*3.* Third.
+
+Bullet list with multiple nesting levels:
+
+*#* First.
+    *-* First.
+        *o* First.
+            *#* First.
+                *-* First.
+                    *o* First.
+                *-* Back.
+            *#* Back.
+        *o* Back.
+    *-* Back.
+*#* Second.
+    *-* Second.
+        *o* Second.
+            *#* Second.
+                *-* Second.
+                    *o* Second.
+
+Numbered list with multiple nesting items:
+
+*1.* First.
+    *A.* First.
+        *a.* First.
+            *1.* First.
+                *A.* First.
+                    *a.* First.
+                *B.* Back.
+            *2.* Back.
+        *b.* Back.
+    *B.* Back.
+*2.* Second.
+    *A.* Second.
+        *a.* Second.
+            *1.* Second.
+                *A.* Second.
+                    *a.* Second.
+
+Nested lists of different types:
+
+*1.* First.
+    *#* First nested.
+        *-* Another.
+            *A.* And more.
+            *B.* And more and more.
+            *C.* And more and more and more.
+        *-* Back.
+*2.* Back to first level.
+*3.* Last item.

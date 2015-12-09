@@ -1,0 +1,16 @@
+---- markdown ----
+This is a paragraph with **bold** inline text.
+
+This is another paragraph with *emphasized* inline text.
+
+In this paragraph, we
+**start span elements** in the
+*first column*
+`with no spacing` and we have no `trailing`
+whitespace to connect them.
+---- gplus ----
+This is a paragraph with *bold* inline text.
+
+This is another paragraph with _emphasized_ inline text.
+
+In this paragraph, we *start span elements* in the _first column_ "with no spacing" and we have no "trailing" whitespace to connect them.
