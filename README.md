@@ -1,4 +1,4 @@
-# Markdown converter to Google+ posts
+# Markdown2Social
 
 **The Markdown2Social utility converts simple Markdown documents to Google+
 posts ready to be shared on the social network.**  There is room for writing
