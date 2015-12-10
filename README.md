@@ -1,6 +1,6 @@
 # Markdown converter to Google+ posts
 
-**The `markdown2social` utility converts simple Markdown documents to Google+
+**The Markdown2Social utility converts simple Markdown documents to Google+
 posts ready to be shared on the social network.**  There is room for writing
 output plugins for other target sites, but at the moment only Google+ is
 supported.
@@ -22,7 +22,7 @@ editors that support Markdown, would let you store those posts in a version
 control system, and may even let you republish that same content directly on
 your site with ease.
 
-This is exactly the goal of `markdown2social`: to let you store your articles'
+This is exactly the goal of Markdown2Social: to let you store your articles'
 master copies in a version control system while providing a mechanism to extract
 a simplified version that can be shared in a social network.  Does this work?
 For the most part yes, but there are obvious limitations; keep reading.
