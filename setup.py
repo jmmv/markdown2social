@@ -45,7 +45,7 @@ setup(
         'console_scripts': 'markdown2social=markdown2social.__main__:main',
     },
 
-    install_requires=['markdown'],
+    install_requires=['Markdown'],
 
     test_suite='nose.collector',
     tests_require=['nose'],
