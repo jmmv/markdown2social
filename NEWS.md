@@ -5,6 +5,6 @@ Major changes between releases
 Changes in version 0.1
 ----------------------
 
-**NOT RELEASED YET.  STILL UNDER DEVELOPMENT.**
+**Released on December 10th, 2015.**
 
-* No changes recorded.
+* First public release.

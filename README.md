@@ -27,12 +27,32 @@ master copies in a version control system while providing a mechanism to extract
 a simplified version that can be shared in a social network.  Does this work?
 For the most part yes, but there are obvious limitations; keep reading.
 
-## Downloads and installation
+## Download
 
-Install the tool per the instructions in [INSTALL.md](INSTALL.md) after
-fetching it from GitHub.
+The latest version of Markdown2Social is 0.1 and was released on
+December 10th, 2015.
 
-There currently are no [formal releases](NEWS.md) of this utility.
+Download: [markdown2social-0.1](../../releases/tag/markdown2social-0.1)
+
+See the [release notes](NEWS.md) for information about the changes in this and
+all previous releases.
+
+## Installation
+
+Using `pip`:
+
+```
+$ pip install markdown2social
+```
+
+From sources after cloning the tree from GitHub:
+
+```shell
+$ ./setup.py install
+```
+
+See the [detailed installation instructions](INSTALL.md) for additional
+information.
 
 ## Usage
 
