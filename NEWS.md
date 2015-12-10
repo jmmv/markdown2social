@@ -7,7 +7,9 @@ Changes in version 0.2
 
 **NOT RELEASED YET; STILL UNDER DEVELOPMENT.**
 
-* No changes recorded.
+* Fixed contents of the sdist: added missing documentation and testdata
+  files.  Ah, the obvious mistakes one makes when publishing a Python
+  package for the first time...
 
 
 Changes in version 0.1

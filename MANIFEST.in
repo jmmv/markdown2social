@@ -1,0 +1,3 @@
+include AUTHORS CONTRIBUTING CONTRIBUTORS LICENSE
+include INSTALL.md NEWS.md README.md
+include markdown2social/testdata/*
