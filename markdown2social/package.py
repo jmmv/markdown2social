@@ -13,4 +13,4 @@
 # under the License.
 
 # Package version.
-VERSION = '0.2'
+VERSION = '0.3'
