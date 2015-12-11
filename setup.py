@@ -73,4 +73,15 @@ setup(
     requires=['Markdown(>=2.6)'],
 
     cmdclass={'test': TestCommand},
+
+    data_files=[
+        ('share/doc/markdown2social', [
+            'AUTHORS',
+            'CONTRIBUTING',
+            'CONTRIBUTORS',
+            'LICENSE',
+            'NEWS.md',
+            'README.md',
+        ]),
+    ],
 )
