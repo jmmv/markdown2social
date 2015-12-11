@@ -92,6 +92,23 @@ def _replace_entities(text):
     return text
 
 
+def _apply_replacements(text, replacements):
+    """Applies a set of replacements to the given text.
+
+    Args:
+        text: str.  The line of text to be processed.
+        replacements: collection(tuple(re pattern, str)).  List of pairs
+            representing a compiled regular expression to match text and its
+            corresponding replacement.  The replacement can use backreferences.
+
+    Returns:
+        str.  A new line of text with all replacements applied.
+    """
+    for preg, subst in replacements:
+        text = preg.sub(subst, text)
+    return text
+
+
 def _flatten_text(text):
     """Flattens a text node.
 
@@ -348,7 +365,23 @@ class _Markdown(markdown.Markdown):
     """Custom Markdown parser to extend the output formats."""
 
     def __init__(self, *args, **kwargs):
-        """Constructor for a _Markdown object."""
+        """Constructor for a _Markdown object.
+
+        Args:
+            *args: list.  Positional arguments to pass to the superclass.
+            *kwargs: dict.  Keyword arguments to pass to the superclass.  The
+                following are exceptions and describe the arguments processed
+                by this constructor directly:
+
+                replacements: collection(tuple(str, str)).  List of pairs
+                    representing a regular expression to match text and its
+                    corresponding replacement.  The replacement can use
+                    backreferences.
+        """
+        replacements = kwargs.pop('replacements', None) or []
+        self.replacements = [(re.compile(regex), subst)
+                             for regex, subst in replacements]
+
         # Override the definition of possible formats in the parent class.  This
         # is a class attribute in the parent class and is queried in the
         # constructor, so we must override this before we call init.
@@ -408,7 +441,8 @@ class _Markdown(markdown.Markdown):
 
         line = ''
         if element.text:
-            line += formatter.format_text(locator, element)
+            line += _apply_replacements(formatter.format_text(locator, element),
+                                        self.replacements)
 
         for i, item in enumerate(element):
             item_locator = _Locator(ancestors=locator.ancestors + [element.tag],
@@ -429,21 +463,26 @@ class _Markdown(markdown.Markdown):
         line = formatter.format_contents(locator, element, line)
 
         if element.tail:
-            line += formatter.format_tail(locator, element)
+            line += _apply_replacements(formatter.format_tail(locator, element),
+                                        self.replacements)
 
         return line
 
 
-def convert(raw_markdown):
+def convert(raw_markdown, replacements=None):
     """Converts a Markdown document in raw form to a Google+ post.
 
     Args:
         raw_markdown: unicode.  The Markdown document in raw format.
+        replacements: collection(tuple(str, str)).  List of pairs representing
+            a regular expression to match text and its corresponding
+            replacement.  The replacement can use backreferences.
 
     Returns:
         unicode.  The Google+ text ready to be pasted into the browser.
     """
-    markdown_document = _Markdown(output_format='gplus')
+    markdown_document = _Markdown(output_format='gplus',
+                                  replacements=replacements)
     text = markdown_document.convert(raw_markdown) + '\n'
 
     # The markdown library does some strange extraction of HTML entities and
