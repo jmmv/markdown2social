@@ -26,6 +26,6 @@ Additionally, the command above will install symlinks to your source tree
 instead of copies of your files, which means any changes to the code will
 immediately show up in the installed copy of Markdown2Social.
 
-To run regression tests:
+To run regression tests, first install nose and then run:
 
     ./setup.py test

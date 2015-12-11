@@ -1,6 +1,4 @@
-*.egg
-*.egg-info
 *.pyc
-.eggs
+MANIFEST
 build
 dist
