@@ -13,11 +13,37 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import sys
+
+from distutils.cmd import Command
 from distutils.core import setup
 
 package = {}
 with open('markdown2social/package.py') as init_file:
     exec(init_file.read(), package)
+
+
+# Define a TestCommand command if and only if nose is present.
+try:
+    from nose.core import TestProgram
+except ImportError:
+    TestCommand = None
+else:
+    class TestCommand(Command):
+        """setup.py command to run unit tests via nose."""
+
+        description = 'run unit tests'
+        user_options = []
+
+        def initialize_options(self):
+            pass
+
+        def finalize_options(self):
+            pass
+
+        def run(self):
+            TestProgram(argv=[sys.argv[0], '--verbose'])
+
 
 setup(
     name='markdown2social',
@@ -46,7 +72,5 @@ setup(
 
     requires=['Markdown(>=2.6)'],
 
-    # TODO(jmmv): Implement 'test' command.
-    #test_suite='nose.collector',
-    #tests_require=['nose'],
+    cmdclass={'test': TestCommand},
 )
