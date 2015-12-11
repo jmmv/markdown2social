@@ -22,7 +22,7 @@ import sys
 
 import markdown2social
 from markdown2social import converter
-from markdown2social import metadata
+from markdown2social import package
 
 
 def main(args=None):
@@ -44,7 +44,7 @@ def main(args=None):
                      'given, the Markdown content is read from stdin.  If no '
                      'output file is specified via --output_file, the output '
                      'is written to stdout.'),
-        version='%prog ' + metadata.VERSION)
+        version='%prog ' + package.VERSION)
     parser.add_option('-o', '--output_file', dest='output_file', default=None,
                       help='File to write the output to; use stdout if empty')
 

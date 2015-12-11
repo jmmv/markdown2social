@@ -15,13 +15,13 @@
 
 from setuptools import setup
 
-metadata = {}
-with open('markdown2social/metadata.py') as init_file:
-    exec(init_file.read(), metadata)
+package = {}
+with open('markdown2social/package.py') as init_file:
+    exec(init_file.read(), package)
 
 setup(
     name='markdown2social',
-    version=metadata['VERSION'],
+    version=package['VERSION'],
     # TODO(jmmv): Should convert README.md to README.rst and bundle it into
     # the description, as recommended by the setuptools package.
     description='Converts Markdown documents to Google+ posts',
