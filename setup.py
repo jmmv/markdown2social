@@ -68,7 +68,7 @@ setup(
     license='Apache',
 
     packages=['markdown2social'],
-    scripts=['bin/markdown2social'],
+    scripts=['scripts/markdown2social'],
 
     requires=['Markdown(>=2.6)'],
 
@@ -84,7 +84,7 @@ setup(
             'README.md',
         ]),
         ('share/man/man1', [
-            'bin/markdown2social.1',
+            'scripts/markdown2social.1',
         ]),
     ],
 )
