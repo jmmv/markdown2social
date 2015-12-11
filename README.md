@@ -88,17 +88,3 @@ you should follow these guidelines in your Markdown documents for best results:
 
 * Links are supported by emitting the target URL after the link text.  Do not be
   too smart with the link labels because they won't be clickable.
-
-## To-Do
-
-* **Formatting**
-
-  * **Heading autonumbering**: Might be useful to disambiguate heading levels,
-    although I have never felt the need for this in my posts.
-
-* **Miscellaneous**
-
-  * **Add more backends**: In particular, I'd personally find it useful if the
-    tool could generate Medium posts.
-
-  * **Add a manpage**.
