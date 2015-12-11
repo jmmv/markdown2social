@@ -34,6 +34,7 @@ setup(
         'Development Status :: 4 - Beta',
         'Environment :: Console',
         'License :: OSI Approved :: Apache Software License',
+        'Programming Language :: Python :: 2 :: Only',
         'Programming Language :: Python :: 2.7',
         'Topic :: Text Processing :: Markup',
     ],
