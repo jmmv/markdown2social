@@ -24,4 +24,14 @@ done
 python setup.py build || exit 1
 python setup.py test || exit 1
 
-python setup.py install || exit 1
+if [ "${TRAVIS}" = true ]; then
+    python setup.py install || exit 1
+else
+    prefix="$(cd .. && pwd)/local"
+    py_version="$(python -c 'import sys; print "%d.%d" % (
+        sys.version_info.major, sys.version_info.minor)')"
+    py_dir="${prefix}/lib/python${py_version}/site-packages"
+    mkdir -p "${py_dir}"
+    PYTHONPATH="${py_dir}" python setup.py install --prefix="${prefix}" \
+        || exit 1
+fi
