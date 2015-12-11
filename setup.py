@@ -13,7 +13,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from setuptools import setup
+from distutils.core import setup
 
 package = {}
 with open('markdown2social/package.py') as init_file:
@@ -42,12 +42,11 @@ setup(
     license='Apache',
 
     packages=['markdown2social'],
-    entry_points={
-        'console_scripts': 'markdown2social=markdown2social.__main__:main',
-    },
+    scripts=['bin/markdown2social'],
 
-    install_requires=['Markdown'],
+    requires=['Markdown(>=2.6)'],
 
-    test_suite='nose.collector',
-    tests_require=['nose'],
+    # TODO(jmmv): Implement 'test' command.
+    #test_suite='nose.collector',
+    #tests_require=['nose'],
 )
