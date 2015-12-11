@@ -344,58 +344,25 @@ _ELEMENTS = {
 }
 
 
-def _format_element(locator, element):
-    """Formats an element of the document.
-
-    An element, as defined by the Markdown library, is composed of a leading
-    literal text, an optional ordered list of subelements, and an optional
-    literal tail.
-
-    Args:
-        locator: _Locator.  Information about the position of the element in
-            the etree.
-        element: ET.Element.  An element in the tree.
-
-    Returns:
-        str.  A string representing the formatted element or None if there is
-        nothing to output for this element.
-
-    """
-    formatter = _ELEMENTS.get(element.tag, _ELEMENTS[None])
-
-    line = ''
-    if element.text:
-        line += formatter.format_text(locator, element)
-
-    for i, item in enumerate(element):
-        item_locator = _Locator(ancestors=locator.ancestors + [element.tag],
-                                cardinality=len(element),
-                                rank=i)
-        item_line = _format_element(item_locator, item)
-
-        # Add a space between items if necessary.  In particular, we must only
-        # do this if neither the current line ends nor the item's line starts
-        # with a newline character because otherwise we would end up with
-        # trailing spaces.  This could happen because of the way we handle the
-        # formatting of lists.
-        if ((line and line[-1] not in ' \n\t') and
-            (item_line and item_line[0] not in ' \n\t')):
-            line += ' '
-        line += item_line
-
-    line = formatter.format_contents(locator, element, line)
-
-    if element.tail:
-        line += formatter.format_tail(locator, element)
-
-    return line
-
-
 class _Markdown(markdown.Markdown):
     """Custom Markdown parser to extend the output formats."""
 
-    @classmethod
-    def _format_gplus(cls, document):
+    def __init__(self, *args, **kwargs):
+        """Constructor for a _Markdown object."""
+        # Override the definition of possible formats in the parent class.  This
+        # is a class attribute in the parent class and is queried in the
+        # constructor, so we must override this before we call init.
+        self.output_formats = {
+            'gplus': self._format_gplus,
+        }
+
+        markdown.Markdown.__init__(self, *args, **kwargs)
+
+        # We need to disable this to avoid confusing the markdown processor with
+        # our plain-text output.
+        self.stripTopLevelTags = False  # pylint: disable=invalid-name
+
+    def _format_gplus(self, document):
         """Convert a Markdown document to a Google+ post.
 
         The root element of the document is special, and this is why we handle
@@ -415,26 +382,56 @@ class _Markdown(markdown.Markdown):
 
         paragraphs = []
         for element in root:
-            paragraph = _format_element(
+            paragraph = self._format_element(
                 _Locator(ancestors=[], cardinality=1, rank=0), element)
             if paragraph is not None:
                 paragraphs.append(paragraph)
         return '\n\n'.join(paragraphs)
 
-    def __init__(self, *args, **kwargs):
-        """Constructor for a _Markdown object."""
-        # Override the definition of possible formats in the parent class.  This
-        # is a class attribute in the parent class and is queried in the
-        # constructor, so we must override this before we call init.
-        self.output_formats = {
-            'gplus': self._format_gplus,
-        }
+    def _format_element(self, locator, element):
+        """Formats an element of the document.
 
-        markdown.Markdown.__init__(self, *args, **kwargs)
+        An element, as defined by the Markdown library, is composed of a leading
+        literal text, an optional ordered list of subelements, and an optional
+        literal tail.
 
-        # We need to disable this to avoid confusing the markdown processor with
-        # our plain-text output.
-        self.stripTopLevelTags = False  # pylint: disable=invalid-name
+        Args:
+            locator: _Locator.  Information about the position of the element in
+                the etree.
+            element: ET.Element.  An element in the tree.
+
+        Returns:
+            str.  A string representing the formatted element or None if there
+            is nothing to output for this element.
+        """
+        formatter = _ELEMENTS.get(element.tag, _ELEMENTS[None])
+
+        line = ''
+        if element.text:
+            line += formatter.format_text(locator, element)
+
+        for i, item in enumerate(element):
+            item_locator = _Locator(ancestors=locator.ancestors + [element.tag],
+                                    cardinality=len(element),
+                                    rank=i)
+            item_line = self._format_element(item_locator, item)
+
+            # Add a space between items if necessary.  In particular, we must
+            # only do this if neither the current line ends nor the item's line
+            # starts with a newline character because otherwise we would end up
+            # with trailing spaces.  This could happen because of the way we
+            # handle the formatting of lists.
+            if ((line and line[-1] not in ' \n\t') and
+                (item_line and item_line[0] not in ' \n\t')):
+                line += ' '
+            line += item_line
+
+        line = formatter.format_contents(locator, element, line)
+
+        if element.tail:
+            line += formatter.format_tail(locator, element)
+
+        return line
 
 
 def convert(raw_markdown):
