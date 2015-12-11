@@ -83,5 +83,8 @@ setup(
             'NEWS.md',
             'README.md',
         ]),
+        ('share/man/man1', [
+            'bin/markdown2social.1',
+        ]),
     ],
 )

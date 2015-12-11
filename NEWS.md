@@ -7,7 +7,7 @@ Changes in version 0.3
 
 **NOT RELEASED YET; STILL UNDER DEVELOPMENT.**
 
-* No changes recorded.
+* Issue 2: Added a manual page.
 
 
 Changes in version 0.2

@@ -1,0 +1,75 @@
+.\" Copyright 2015 Google Inc.
+.\"
+.\" Licensed under the Apache License, Version 2.0 (the "License"); you may not
+.\" use this file except in compliance with the License.  You may obtain a copy
+.\" of the License at:
+.\"
+.\"     http://www.apache.org/licenses/LICENSE-2.0
+.\"
+.\" Unless required by applicable law or agreed to in writing, software
+.\" distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+.\" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+.\" License for the specific language governing permissions and limitations
+.\" under the License.
+.Dd December 11, 2015
+.Dt MARKDOWN2SOCIAL 1
+.Os
+.Sh NAME
+.Nm markdown2social
+.Nd Converts simple Markdown documents to Google+ posts
+.Sh SYNOPSIS
+.Nm
+.Op Fl -output_file Ar file
+.Op Ar input_file1 .. input_fileN
+.Nm
+.Fl -help
+.Nm
+.Fl -version
+.Sh DESCRIPTION
+In the first synopsis form,
+.Nm
+converts Markdown documents to Google+ posts.
+In the second synopsis form,
+.Nm
+displays interactive help.
+In the third synopsis form,
+.Nm
+displays the package name and its version number.
+.Pp
+Input files can be provided as the
+.Ar input_file1 .. input_fileN
+positional arguments.  If none are given, the Markdown content is read from the
+standard input.  If more than one input file is given, they are all
+concatenated.
+.Pp
+The generated Google+ post is written to the standard output by default, but
+this can be overriden with the
+.Fl -output_file
+flag.
+.Pp
+The following options are available:
+.Bl -tag -width XXXX
+.It Fl -output_file Ar file , Fl o Ar file
+Controls the path to the file that will receive the output of the conversion.
+If not provided, defaults to the standard output.
+.El
+.Ss Formatting suggestions
+Because the formatting options supported by Google+ are extremely simple, this
+tool is very limited on what it can do with Markdown formatting.  In particular,
+you should follow these guidelines in your Markdown documents for best results:
+.Bl -bullet
+.It
+Use a single first-level heading for the post title.  This works best if the
+title is short enough and fits within a single line in the card rendered by
+Google+.
+.It
+Use second-level headings to separate the different sections of your post.
+You can go use further nesting levels, but you won't be able to tell them
+apart in the final version.
+.It
+Links are supported by emitting the target URL after the link text.  Do not be
+too smart with the link labels because they won't be clickable.
+.El
+.Sh EXIT STATUS
+.Nm
+returns 0 on success and non-zero on failure.

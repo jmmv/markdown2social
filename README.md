@@ -71,20 +71,3 @@ information.
 1. Paste them into a new Google+ post.
 
 1. Hit share and voil&agrave;!
-
-## Limitations
-
-Because the formatting options supported by Google+ are extremely simple, this
-tool is very limited on what it can do with Markdown formatting.  In particular,
-you should follow these guidelines in your Markdown documents for best results:
-
-* Use a single first-level heading for the post title.  This works best if the
-  title is short enough and fits within a single line in the card rendered by
-  Google+.
-
-* Use second-level headings to separate the different sections of your post.
-  You can go use further nesting levels, but you won't be able to tell them
-  apart in the final version.
-
-* Links are supported by emitting the target URL after the link text.  Do not be
-  too smart with the link labels because they won't be clickable.
