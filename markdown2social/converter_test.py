@@ -38,6 +38,7 @@ class GoldenDataTest(unittest.TestCase):
         'links.txt',
         'lists.txt',
         'one_paragraph.txt',
+        'replacements.txt',
         'spacing.txt',
         'span_elements.txt',
         'utf8.txt',
@@ -84,14 +85,15 @@ class GoldenDataTest(unittest.TestCase):
 
         return ''.join(markdown_lines), ''.join(gplus_lines)
 
-    def _test_one_file(self, data_file):
+    def _test_one_file(self, data_file, **kwargs):
         """Tests the conversion of the data in a testdata file.
 
         Args:
             data_file: str.  Basename of the file to be loaded.
+            **kwargs: dict.  Keyword arguments to pass to convert().
         """
         markdown, gplus = self._load_data_file(data_file)
-        gplus_actual = converter.convert(markdown)
+        gplus_actual = converter.convert(markdown, **kwargs)
         self.assertListEqual(gplus.split('\n'), gplus_actual.split('\n'))
 
     def test_all_data_files_are_referenced(self):
@@ -118,6 +120,13 @@ class GoldenDataTest(unittest.TestCase):
 
     def test_one_paragraph(self):
         self._test_one_file('one_paragraph.txt')
+
+    def test_replacements(self):
+        replacements = [
+            (r'(\A|\s)(magic/[0-9_-]+)', r'\1http://\2'),
+            (r'^anchored', r'replaced'),
+        ]
+        self._test_one_file('replacements.txt', replacements=replacements)
 
     def test_spacing(self):
         self._test_one_file('spacing.txt')

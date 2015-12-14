@@ -11,7 +11,7 @@
 .\" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
 .\" License for the specific language governing permissions and limitations
 .\" under the License.
-.Dd December 11, 2015
+.Dd December 14, 2015
 .Dt MARKDOWN2SOCIAL 1
 .Os
 .Sh NAME
@@ -19,6 +19,7 @@
 .Nd Converts simple Markdown documents to Google+ posts
 .Sh SYNOPSIS
 .Nm
+.Op Fl -config_file Ar file
 .Op Fl -output_file Ar file
 .Op Ar input_file1 .. input_fileN
 .Nm
@@ -49,6 +50,10 @@ flag.
 .Pp
 The following options are available:
 .Bl -tag -width XXXX
+.It Fl -config_file Ar file , Fl c Ar file
+Specifies the path to the configuration file.
+If not provided, defaults to
+.Pa ~/.config/markdown2social.conf .
 .It Fl -output_file Ar file , Fl o Ar file
 Controls the path to the file that will receive the output of the conversion.
 If not provided, defaults to the standard output.
@@ -70,6 +75,13 @@ apart in the final version.
 Links are supported by emitting the target URL after the link text.  Do not be
 too smart with the link labels because they won't be clickable.
 .El
+.Sh FILES
+.Bl -tag -width XXXX
+.It Pa ~/.config/markdown2social.conf
+Default configuration file.
+.El
 .Sh EXIT STATUS
 .Nm
 returns 0 on success and non-zero on failure.
+.Sh SEE ALSO
+.Xr markdown2social.conf 5

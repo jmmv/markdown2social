@@ -1,0 +1,58 @@
+.\" Copyright 2015 Google Inc.
+.\"
+.\" Licensed under the Apache License, Version 2.0 (the "License"); you may not
+.\" use this file except in compliance with the License.  You may obtain a copy
+.\" of the License at:
+.\"
+.\"     http://www.apache.org/licenses/LICENSE-2.0
+.\"
+.\" Unless required by applicable law or agreed to in writing, software
+.\" distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+.\" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+.\" License for the specific language governing permissions and limitations
+.\" under the License.
+.Dd December 14, 2015
+.Dt MARKDOWN2SOCIAL.CONF 5
+.Os
+.Sh NAME
+.Nm markdown2social.conf
+.Nd Configuration file for markdown2social
+.Sh DESCRIPTION
+The configuration file of markdown2social is an INI-like file composed of
+top-level sections and key/value pairs within each.
+The syntax of this file is defined by
+Python's
+.Sq ConfigParser
+module.
+.Ss Section: replacements
+The
+.Sq replacements
+section contains a list of textual replacements to apply to the text (not the
+markup) of the Markdown post once it has been converted to the target format.
+.Pp
+Each key/value pair in this section specifies a replacement.
+The key is meaningless but it has to be different for each entry; you might use
+it to provide a hint on what the replacement is about.
+The value follows the
+.Sq regex -> subst
+structure where
+.Sq regex
+is an extended regular expression that matches the text to be replaced,
+.Sq subst
+is the replacement for the matched text, and the
+.Sq \ ->\ 
+four-character sequence is the magic separator between the two fields.
+It is common to use groups in the regular expression and backrefernces in the
+substitution text.
+.Pp
+If you are wondering why the regular expression is not the key itself, it is
+because the keys in INI files are not case sensitive.
+.Sh EXAMPLES
+Automatically turn a bunch of bare identifiers into links:
+.Bd -literal -offset indent
+[replacements]
+ticket: (\\A|\\s)ticket #([0-9]+) -> http://bugs.example.com/\\1
+pr: (\\A|\\s)pr/([0-9]+) -> http://bugs.example.com/\\1
+.Ed
+.Sh SEE ALSO
+.Xr markdown2social 1

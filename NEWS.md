@@ -9,6 +9,14 @@ Changes in version 0.3
 
 * Issue 2: Added a manual page.
 
+* Added support for a configuration file.  The default is to load
+  `~/.config/markdown2social.conf` if it exists, and the path can be
+  overridden via the `--config_file` flag.
+
+* Added support to specify a set of "replacements" to apply to the post
+  text after conversion.  This is useful, for example, to automatically
+  turn bare references to external systems into links.
+
 
 Changes in version 0.2
 ----------------------

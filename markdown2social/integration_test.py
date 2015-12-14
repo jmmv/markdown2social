@@ -31,6 +31,25 @@ class MainTest(unittest.TestCase):
     TEST_OUTPUT = '*This is my post*\n\nAnd a paragraph!\n'
     TEST_UTF8 = 'A string %s with Unicode in it\n' % unichr(0x2014)
 
+    def setUp(self):
+        self.fake_home = tempfile.mkdtemp()
+        self.fake_config_subdir = os.path.join(self.fake_home, '.config')
+        self.fake_config_file = os.path.join(self.fake_config_subdir,
+                                             'markdown2social.conf')
+        os.mkdir(self.fake_config_subdir)
+
+        self.old_home = os.environ['HOME']
+        os.environ['HOME'] = self.fake_home
+
+    def tearDown(self):
+        if os.path.exists(self.fake_config_file):
+            os.unlink(self.fake_config_file)
+        if os.path.exists(self.fake_config_subdir):
+            os.rmdir(self.fake_config_subdir)
+        os.rmdir(self.fake_home)
+
+        os.environ['HOME'] = self.old_home
+
     def _run(self, args=None, stdin=None, stdout=None, stderr=None,
              expected_exit_code=0):
         """Runs the main method with stream redirection.
@@ -158,6 +177,39 @@ class MainTest(unittest.TestCase):
                     args=['-o', output_file.name, input_file.name])
                 self.assertEquals(self.TEST_UTF8,
                                   codecs.decode(output_file.read(), 'utf-8'))
+
+    def test_config_file__replacements(self):
+        with open(self.fake_config_file, 'w') as output:
+            output.write('[replacements]\n')
+            output.write('1 = foo -> bar\n')
+
+        stdout, stderr = self._run(stdin=StringIO.StringIO('a foo b\n'))
+        self.assertEquals('a bar b\n', stdout.getvalue())
+        self.assertEquals('', stderr.getvalue())
+
+    def test_config_file__override_path(self):
+        with open(self.fake_config_file, 'w') as output:
+            output.write('[replacements]\n')
+            output.write('1 = foo -> bar\n')
+
+        with tempfile.NamedTemporaryFile() as custom:
+            custom.write('[replacements]\n')
+            custom.write('1 = foo -> zzz\n')
+            custom.flush()
+
+            stdout, stderr = self._run(['--config_file=%s' % custom.name],
+                                       stdin=StringIO.StringIO('a foo b\n'))
+            self.assertEquals('a zzz b\n', stdout.getvalue())
+            self.assertEquals('', stderr.getvalue())
+
+    def test_config_file__bad(self):
+        with open(self.fake_config_file, 'w') as output:
+            output.write('[]invalid')
+
+        stdout, stderr = self._run(expected_exit_code=1)
+        self.assertEquals('', stdout.getvalue())
+        self.assertRegexpMatches(stderr.getvalue(),
+                                 r'error.*Failed to load.*markdown2social.conf')
 
 
 if __name__ == '__main__':

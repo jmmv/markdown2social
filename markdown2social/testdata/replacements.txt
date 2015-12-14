@@ -1,0 +1,13 @@
+---- markdown ----
+magic/123, midline magic/456 and end of line magic/789
+
+Fully qualified http://magic/123456.
+
+anchored
+not anchored
+---- gplus ----
+http://magic/123, midline http://magic/456 and end of line http://magic/789
+
+Fully qualified http://magic/123456.
+
+replaced not anchored

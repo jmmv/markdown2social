@@ -86,5 +86,8 @@ setup(
         ('share/man/man1', [
             'scripts/markdown2social.1',
         ]),
+        ('share/man/man5', [
+            'scripts/markdown2social.conf.5',
+        ]),
     ],
 )
