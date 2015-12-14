@@ -18,9 +18,11 @@
 import codecs
 import fileinput
 import optparse
+import os
 import sys
 
 import markdown2social
+from markdown2social import config
 from markdown2social import converter
 from markdown2social import package
 
@@ -45,10 +47,22 @@ def main(args=None):
                      'output file is specified via --output_file, the output '
                      'is written to stdout.'),
         version='%prog ' + package.VERSION)
+    parser.add_option('-c', '--config_file', dest='config_file',
+                      default='~/.config/markdown2social.conf',
+                      help='Configuration file to use')
     parser.add_option('-o', '--output_file', dest='output_file', default=None,
                       help='File to write the output to; use stdout if empty')
 
     options, args = parser.parse_args(args)
+
+    cfg = None
+    try:
+        cfg = config.load_config(os.path.expanduser(options.config_file))
+    except config.Error as e:
+        sys.stderr.write('%s: error: Failed to load %s: %s' % (
+            parser.get_prog_name(), options.config_file, e))
+        return 1
+    assert cfg is not None
 
     raw_markdown = ''
     try:
@@ -58,7 +72,7 @@ def main(args=None):
         sys.stderr.write('%s: error: %s\n' % (parser.get_prog_name(), e))
         return 1
 
-    gplus = converter.convert(raw_markdown)
+    gplus = converter.convert(raw_markdown, replacements=cfg.replacements)
 
     if options.output_file:
         with codecs.open(options.output_file, 'w', 'utf-8') as output:
