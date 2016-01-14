@@ -29,10 +29,10 @@ For the most part yes, but there are obvious limitations; keep reading.
 
 ## Download
 
-The latest version of Markdown2Social is 0.2 and was released on
-December 10th, 2015.
+The latest version of Markdown2Social is 0.3 and was released on
+January 14th, 2016.
 
-Download: [markdown2social-0.2](../../releases/tag/markdown2social-0.2)
+Download: [markdown2social-0.3](../../releases/tag/markdown2social-0.3)
 
 See the [release notes](NEWS.md) for information about the changes in this and
 all previous releases.

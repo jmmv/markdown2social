@@ -5,7 +5,7 @@ Major changes between releases
 Changes in version 0.3
 ----------------------
 
-**NOT RELEASED YET; STILL UNDER DEVELOPMENT.**
+**Released on January 14th, 2016.**
 
 * Issue 2: Added a manual page.
 
