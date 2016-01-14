@@ -42,7 +42,7 @@ all previous releases.
 Using `pip`:
 
 ```
-$ pip install markdown2social
+$ pip install markdown markdown2social
 ```
 
 From sources after cloning the tree from GitHub:
