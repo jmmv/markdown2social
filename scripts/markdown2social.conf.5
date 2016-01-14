@@ -11,7 +11,7 @@
 .\" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
 .\" License for the specific language governing permissions and limitations
 .\" under the License.
-.Dd December 14, 2015
+.Dd January 14, 2016
 .Dt MARKDOWN2SOCIAL.CONF 5
 .Os
 .Sh NAME
@@ -51,8 +51,8 @@ because the keys in INI files are not case sensitive.
 Automatically turn a bunch of bare identifiers into links:
 .Bd -literal -offset indent
 [replacements]
-ticket: (\\A|\\s)ticket #([0-9]+) -> http://bugs.example.com/\\1
-pr: (\\A|\\s)pr/([0-9]+) -> http://bugs.example.com/\\1
+ticket: (\\A|\\s)ticket #([0-9]+) -> \\1http://bugs.example.com/\\2
+pr: (\\A|\\s)pr/([0-9]+) -> \\1http://bugs.example.com/\\2
 .Ed
 .Sh SEE ALSO
 .Xr markdown2social 1
