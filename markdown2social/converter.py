@@ -469,11 +469,32 @@ class _Markdown(markdown.Markdown):
         return line
 
 
-def convert(raw_markdown, replacements=None):
+def merge_metadata_with_content(metadata, content):
+    """Adds relevant metadata entries to the post content.
+
+    Args:
+        metadata: dict(str, str).  A dictionary containing the YAML Front
+            Matter of the post.  May be empty.
+        content: unicode.  The Markdown document in raw format.
+
+    Returns:
+        unicode.  The modified content with additional text corresponding to
+        the metadata.
+    """
+    output = u''
+    if 'title' in metadata:
+        output += '# %s\n\n' % metadata['title']
+    output += content
+    return output
+
+
+def convert(metadata, content, replacements=None):
     """Converts a Markdown document in raw form to a Google+ post.
 
     Args:
-        raw_markdown: unicode.  The Markdown document in raw format.
+        metadata: dict(str, str).  A dictionary containing the YAML Front
+            Matter of the post.  May be empty.
+        content: unicode.  The Markdown document in raw format.
         replacements: collection(tuple(str, str)).  List of pairs representing
             a regular expression to match text and its corresponding
             replacement.  The replacement can use backreferences.
@@ -483,7 +504,9 @@ def convert(raw_markdown, replacements=None):
     """
     markdown_document = _Markdown(output_format='gplus',
                                   replacements=replacements)
-    text = markdown_document.convert(raw_markdown) + '\n'
+
+    text = markdown_document.convert(
+        merge_metadata_with_content(metadata, content)) + '\n'
 
     # The markdown library does some strange extraction of HTML entities and
     # puts them aside until its postprocessing stage.  We cannot hook into the

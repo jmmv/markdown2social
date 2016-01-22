@@ -13,6 +13,7 @@
 # under the License.
 
 import codecs
+import frontmatter
 import os
 import unittest
 
@@ -34,6 +35,7 @@ class GoldenDataTest(unittest.TestCase):
         'code.txt',
         'complex.txt',
         'entities.txt',
+        'frontmatter.txt',
         'headings.txt',
         'links.txt',
         'lists.txt',
@@ -93,7 +95,8 @@ class GoldenDataTest(unittest.TestCase):
             **kwargs: dict.  Keyword arguments to pass to convert().
         """
         markdown, gplus = self._load_data_file(data_file)
-        gplus_actual = converter.convert(markdown, **kwargs)
+        metadata, content = frontmatter.parse(markdown)
+        gplus_actual = converter.convert(metadata, content, **kwargs)
         self.assertListEqual(gplus.split('\n'), gplus_actual.split('\n'))
 
     def test_all_data_files_are_referenced(self):
@@ -108,6 +111,9 @@ class GoldenDataTest(unittest.TestCase):
 
     def test_entities(self):
         self._test_one_file('entities.txt')
+
+    def test_frontmatter(self):
+        self._test_one_file('frontmatter.txt')
 
     def test_headings(self):
         self._test_one_file('headings.txt')

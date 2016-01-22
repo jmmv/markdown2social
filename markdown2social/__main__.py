@@ -17,6 +17,7 @@
 
 import codecs
 import fileinput
+import frontmatter
 import optparse
 import os
 import sys
@@ -64,15 +65,16 @@ def main(args=None):
         return 1
     assert cfg is not None
 
-    raw_markdown = ''
+    raw_input = ''
     try:
         for line in fileinput.input(args):
-            raw_markdown += codecs.decode(line, 'utf-8')
+            raw_input += codecs.decode(line, 'utf-8')
     except IOError, e:
         sys.stderr.write('%s: error: %s\n' % (parser.get_prog_name(), e))
         return 1
 
-    gplus = converter.convert(raw_markdown, replacements=cfg.replacements)
+    metadata, content = frontmatter.parse(raw_input)
+    gplus = converter.convert(metadata, content, replacements=cfg.replacements)
 
     if options.output_file:
         with codecs.open(options.output_file, 'w', 'utf-8') as output:

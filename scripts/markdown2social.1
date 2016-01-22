@@ -11,7 +11,7 @@
 .\" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
 .\" License for the specific language governing permissions and limitations
 .\" under the License.
-.Dd December 14, 2015
+.Dd January 22, 2016
 .Dt MARKDOWN2SOCIAL 1
 .Os
 .Sh NAME
@@ -58,6 +58,15 @@ If not provided, defaults to
 Controls the path to the file that will receive the output of the conversion.
 If not provided, defaults to the standard output.
 .El
+.Ss Input format
+Input files to
+.Nm
+are plain unicode text files with Markdown markup.
+.Pp
+Optionally, the input may be prefixed by YAML Front Matter.  In that case, the
+.Sq title
+metadata property is extracted from the Front Matter chunk and is used as the
+post's title.  This feature exists to support Jekyll posts as input.
 .Ss Formatting suggestions
 Because the formatting options supported by Google+ are extremely simple, this
 tool is very limited on what it can do with Markdown formatting.  In particular,

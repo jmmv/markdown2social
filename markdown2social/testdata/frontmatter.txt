@@ -1,0 +1,16 @@
+---- markdown ----
+---
+abc: Foo
+title: This is the title
+xyz: Bar
+---
+
+This is the first line of the post content.
+
+And this is the second line.
+---- gplus ----
+*This is the title*
+
+This is the first line of the post content.
+
+And this is the second line.

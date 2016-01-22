@@ -7,6 +7,9 @@ Changes in version 0.4
 
 **STILL UNDER DEVELOPMENT; NOT RELEASED YET.**
 
+* Issue 6: Added support for YAML Front Matter so that Jekyll documents
+  can be parsed as input.
+
 * Moved list of dependencies to a requirements.txt file to simplify the
   installation of this package.
 
