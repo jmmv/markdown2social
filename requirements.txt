@@ -1,0 +1,2 @@
+Markdown>=2.6
+nose>=1.3

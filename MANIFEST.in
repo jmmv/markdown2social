@@ -1,3 +1,4 @@
 include AUTHORS CONTRIBUTING CONTRIBUTORS LICENSE
 include INSTALL.md NEWS.md README.md
+include requirements.txt
 include markdown2social/testdata/*

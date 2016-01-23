@@ -42,12 +42,14 @@ all previous releases.
 Using `pip`:
 
 ```
-$ pip install markdown markdown2social
+$ pip install -r requirements.txt
+$ pip install markdown2social
 ```
 
 From sources after cloning the tree from GitHub:
 
 ```shell
+$ pip install -r requirements.txt
 $ ./setup.py install
 ```
 

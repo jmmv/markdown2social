@@ -13,6 +13,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import re
 import sys
 
 from distutils.cmd import Command
@@ -45,6 +46,30 @@ else:
             TestProgram(argv=[sys.argv[0], '--verbose'])
 
 
+def read_requirements(requirements_txt):
+    """Converts the contents of requirements.txt to requires stanzas.
+
+    Args:
+        requirements_txt: str.  The path to the requirements.txt file.
+
+    Returns:
+        list(str).  The list of requirements in the format accepted by the
+        requires stanza of setup().
+
+    Raises:
+        ValueError: If any of the input lines in requirements.txt cannot be
+            successfully parsed.
+    """
+    requires = []
+    prog = re.compile('^([A-Za-z_-]+)(.*)$')
+    with open(requirements_txt, 'r') as requirements:
+        for line in requirements.readlines():
+            match = prog.search(line.strip())
+            if not match or len(match.groups()) != 2:
+                raise ValueError('Invalid requirements entry %s' % line.strip())
+            requires.append('%s(%s)' % (match.group(1), match.group(2)))
+    return requires
+
 setup(
     name='markdown2social',
     version=package['VERSION'],
@@ -70,7 +95,7 @@ setup(
     packages=['markdown2social'],
     scripts=['scripts/markdown2social'],
 
-    requires=['Markdown(>=2.6)'],
+    requires=read_requirements('requirements.txt'),
 
     cmdclass={'test': TestCommand},
 

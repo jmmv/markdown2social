@@ -7,7 +7,8 @@ Changes in version 0.4
 
 **STILL UNDER DEVELOPMENT; NOT RELEASED YET.**
 
-* No changes recorded.
+* Moved list of dependencies to a requirements.txt file to simplify the
+  installation of this package.
 
 
 Changes in version 0.3

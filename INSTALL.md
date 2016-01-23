@@ -5,11 +5,13 @@
 To get started, simply use `pip` to download and install Markdown2Social along
 all of its dependencies:
 
+    pip install -r requirements.txt
     pip install markdown2social
 
 Alternatively, to build the tool from a source tree checked out from GitHub and
 install it in the system location, do:
 
+    pip install -r requirements.txt
     ./setup.py install
 
 For more information, see the standard Python's `distutils` usage instructions:
